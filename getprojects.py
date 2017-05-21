@@ -14,7 +14,7 @@ def main():
     if not git_installed():
         print("You need to install git first.")
     elif len(sys.argv) < 2:
-        print("Usage: {} username".format(sys.srgv[0]))
+        print(("Usage: {} username".format(sys.srgv[0])))
     else:
         url = "https://api.github.com/users/{}/repos".format(sys.argv[1])
         response = requests.get(url)
@@ -23,8 +23,8 @@ def main():
                 git = subprocess.Popen(["git", "clone", repo["clone_url"]], stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
                 git.wait()
                 if git.returncode == 0:
-                    print("Successfully cloned {}.".format(repo["full_name"]))
+                    print(("Successfully cloned {}.".format(repo["full_name"])))
                 else:
-                    print("Failed to clone {}.".format(repo["full_name"]))
+                    print(("Failed to clone {}.".format(repo["full_name"])))
         else:
-            print("GitHub user not found: {}".format(sys.argv[1]))
+            print(("GitHub user not found: {}".format(sys.argv[1])))
